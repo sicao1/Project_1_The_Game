@@ -1,0 +1,16 @@
+body {
+  background-color: gray;
+}
+
+ul {
+  list-style: none;
+}
+
+li img {
+  max-width: 150px;
+}
+
+.characters {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
