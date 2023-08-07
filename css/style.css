@@ -26,3 +26,11 @@ li img {
   grid-template-columns: repeat(5, 1fr);
   column-gap: 5px;
 }
+
+.selector img {
+  max-width: 300px;
+}
+
+.hidden {
+  display: none;
+}
