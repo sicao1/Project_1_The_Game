@@ -1,38 +1,44 @@
-window.onload = (event) => {
-  event.preventDefault();
+// Choose your fighter, cycle through choices and select one
+const imagePairTags = [
+  ["#McDonalds", "#select-McDonalds"],
+  ["#InNOut", "#select-InNOut"],
+  ["#PandaExpress", "#select-PandaExpress"],
+  ["#Popeyes", "#select-popeyes"],
+  ["#Wendys", "#select-wendys"],
+  ["#BurgerKing", "#select-burgerKing"],
+  ["#KFC", "#select-kfc"],
+  ["#Mark", "#select-wahlburgers"],
+  ["#Chipotle", "#select-chipotle"],
+  ["#TacoBell", "#select-tacoBell"],
+];
 
-  //Globally scoped
-  const imagePairTags = [
-    ["#McDonalds", "#select-McDonalds"],
-    ["#InNOut", "#select-InNOut"],
-    ["#PandaExpress", "#select-PandaExpress"],
-    ["#Popeyes", "#select-popeyes"],
-    ["#Wendys", "#select-wendys"],
-    ["#BurgerKing", "#select-burgerKing"],
-    ["#KFC", "#select-kfc"],
-    ["#Mark", "#select-wahlburgers"],
-    ["#Chipotle", "#select-chipotle"],
-    ["#TacoBell", "#select-tacoBell"],
-  ];
+const chooseFighter = () => {
+  for (const [imageSelection, targetSelection] of imagePairTags) {
+    const image = document.querySelector(imageSelection);
+    const showImage = document.querySelector(targetSelection);
 
-  const chooseFighter = () => {
-    for (const [imageSelection, targetSelection] of imagePairTags) {
-      const image = document.querySelector(imageSelection);
-      const showImage = document.querySelector(targetSelection);
-
-      image.addEventListener("mouseover", function () {
-        showImage.classList.toggle("hidden");
-      });
-      image.addEventListener("mouseout", function () {
-        showImage.classList.toggle("hidden");
-      });
-      image.addEventListener("click", function () {
-        showImage.classList.toggle("hidden");
-      });
-    }
-  };
-  chooseFighter();
-
-  // Starting Conditions
-  //  Player one to choose fighter
+    image.addEventListener("mouseover", function () {
+      showImage.classList.toggle("hidden");
+    });
+    image.addEventListener("mouseout", function () {
+      showImage.classList.toggle("hidden");
+    });
+    image.addEventListener("click", function () {
+      showImage.classList.toggle("hidden");
+    });
+  }
 };
+
+// Starting Conditions
+//  Player one to choose fighter
+const player1SelectFigher = () => {
+  document.querySelector(".player-1");
+  chooseFighter();
+};
+player1SelectFigher();
+
+// const player2SelectFigher = () => {
+//   document.querySelector(".player-1");
+//   chooseFighter();
+// };
+// player2SelectFigher();
