@@ -7,96 +7,134 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <section class="character-selection">
-      <ul class="characters">
-        <li>
+    <main>
+      <section class="character-selection">
+        <ul class="characters">
+          <li>
+            <img
+              id="McDonalds"
+              src="imgs/McDonalds.png"
+              alt="AI generated image of McDonalds mascot as Mortal Kombat character"
+            />
+          </li>
+          <li>
+            <img
+              id="InNOut"
+              src="imgs/InNOut.png"
+              alt="AI generated image of InNOut mascot as Mortal Kombat character"
+            />
+          </li>
+          <li>
+            <img
+              id="PandaExpress"
+              src="imgs/PandaExpress.png"
+              alt="AI generated image of Panda Express mascot as Mortal Kombat character"
+            />
+          </li>
+          <li>
+            <img
+              id="Popeyes"
+              src="imgs/Popeyes.png"
+              alt="AI generated image of Popeyes mascot as Mortal Kombat character"
+            />
+          </li>
+          <li>
+            <img
+              id="Wendys"
+              src="imgs/Wendys.png"
+              alt="AI generated image of Wendys mascot as Mortal Kombat character"
+            />
+          </li>
+          <li>
+            <img
+              id="BurgerKing"
+              src="imgs/BurgerKing.png"
+              alt="AI generated image of Burger Kinds mascot as Mortal Kombat character"
+            />
+          </li>
+          <li>
+            <img
+              id="KFC"
+              src="imgs/KFC.png"
+              alt="AI generated image of KFC mascot as Mortal Kombat character"
+            />
+          </li>
+          <li>
+            <img
+              id="Mark"
+              src="imgs/Wahlburgers.png"
+              alt="AI generated image of Mark Wahlberg as Mortal Kombat character"
+            />
+          </li>
+          <li>
+            <img
+              id="Chipotle"
+              src="imgs/Chipotle.png"
+              alt="AI generated image of Chipotle mascot as Mortal Kombat character"
+            />
+          </li>
+          <li>
+            <img
+              id="TacoBell"
+              src="imgs/TacoBell.png"
+              alt="AI generated image of Taco Bells mascot as Mortal Kombat character"
+            />
+          </li>
+        </ul>
+      </section>
+      <section class="player-1 player--active">
+        <div class="selector-1">
+          <img src="imgs/McDonalds.png" class="hidden" id="select-McDonalds" />
+          <img src="imgs/InNOut.png" class="hidden" id="select-InNOut" />
           <img
-            id="McDonalds"
-            src="imgs/McDonalds.png"
-            alt="AI generated image of McDonalds mascot as Mortal Kombat character"
-          />
-        </li>
-        <li>
-          <img
-            id="InNOut"
-            src="imgs/InNOut.png"
-            alt="AI generated image of InNOut mascot as Mortal Kombat character"
-          />
-        </li>
-        <li>
-          <img
-            id="PandaExpress"
             src="imgs/PandaExpress.png"
-            alt="AI generated image of Panda Express mascot as Mortal Kombat character"
+            class="hidden"
+            id="select-PandaExpress"
           />
-        </li>
-        <li>
+          <img src="imgs/Popeyes.png" class="hidden" id="select-popeyes" />
+          <img src="imgs/Wendys.png" class="hidden" id="select-wendys" />
           <img
-            id="Popeyes"
-            src="imgs/Popeyes.png"
-            alt="AI generated image of Popeyes mascot as Mortal Kombat character"
-          />
-        </li>
-        <li>
-          <img
-            id="Wendys"
-            src="imgs/Wendys.png"
-            alt="AI generated image of Wendys mascot as Mortal Kombat character"
-          />
-        </li>
-        <li>
-          <img
-            id="BurgerKing"
             src="imgs/BurgerKing.png"
-            alt="AI generated image of Burger Kinds mascot as Mortal Kombat character"
+            class="hidden"
+            id="select-burgerKing"
           />
-        </li>
-        <li>
+          <img src="imgs/KFC.png" class="hidden" id="select-kfc" />
           <img
-            id="KFC"
-            src="imgs/KFC.png"
-            alt="AI generated image of KFC mascot as Mortal Kombat character"
-          />
-        </li>
-        <li>
-          <img
-            id="Mark"
             src="imgs/Wahlburgers.png"
-            alt="AI generated image of Mark Wahlberg as Mortal Kombat character"
+            class="hidden"
+            id="select-wahlburgers"
           />
-        </li>
-        <li>
+          <img src="imgs/Chipotle.png" class="hidden" id="select-chipotle" />
+          <img src="imgs/TacoBell.png" class="hidden" id="select-tacoBell" />
+        </div>
+      </section>
+      <section class="player-2">
+        <div class="selector-2">
+          <img src="imgs/McDonalds.png" class="hidden" id="select-McDonalds" />
+          <img src="imgs/InNOut.png" class="hidden" id="select-InNOut" />
           <img
-            id="Chipotle"
-            src="imgs/Chipotle.png"
-            alt="AI generated image of Chipotle mascot as Mortal Kombat character"
+            src="imgs/PandaExpress.png"
+            class="hidden"
+            id="select-PandaExpress"
           />
-        </li>
-        <li>
+          <img src="imgs/Popeyes.png" class="hidden" id="select-popeyes" />
+          <img src="imgs/Wendys.png" class="hidden" id="select-wendys" />
           <img
-            id="TacoBell"
-            src="imgs/TacoBell.png"
-            alt="AI generated image of Taco Bells mascot as Mortal Kombat character"
+            src="imgs/BurgerKing.png"
+            class="hidden"
+            id="select-burgerKing"
           />
-        </li>
-      </ul>
-    </section>
-    <div class="selector">
-      <img src="imgs/McDonalds.png" class="hidden" id="select-McDonalds" />
-      <img src="imgs/InNOut.png" class="hidden" id="select-InNOut" />
-      <img
-        src="imgs/PandaExpress.png"
-        class="hidden"
-        id="select-PandaExpress"
-      />
-      <img src="imgs/Popeyes.png" class="hidden" id="select-popeyes" />
-      <img src="imgs/Wendys.png" class="hidden" id="select-wendys" />
-      <img src="imgs/BurgerKing.png" class="hidden" id="select-burgerKing" />
-      <img src="imgs/KFC.png" class="hidden" id="select-kfc" />
-      <img src="imgs/Wahlburgers.png" class="hidden" id="select-wahlburgers" />
-      <img src="imgs/Chipotle.png" class="hidden" id="select-chipotle" />
-      <img src="imgs/TacoBell.png" class="hidden" id="select-tacoBell" />
-    </div>
+          <img src="imgs/KFC.png" class="hidden" id="select-kfc" />
+          <img
+            src="imgs/Wahlburgers.png"
+            class="hidden"
+            id="select-wahlburgers"
+          />
+          <img src="imgs/Chipotle.png" class="hidden" id="select-chipotle" />
+          <img src="imgs/TacoBell.png" class="hidden" id="select-tacoBell" />
+        </div>
+      </section>
+    </main>
     <script src="js/app.js"></script>
   </body>
 </html>

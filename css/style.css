@@ -25,10 +25,11 @@ li img {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   column-gap: 5px;
+  cursor: pointer;
 }
 
-.selector img {
-  max-width: 300px;
+.selector-1 img {
+  max-width: 350px;
 }
 
 .hidden {
