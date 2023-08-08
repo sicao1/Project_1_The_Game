@@ -35,3 +35,8 @@ li img {
 .hidden {
   display: none;
 }
+
+.fight-section {
+  display: flex;
+  align-items: flex-end;
+}

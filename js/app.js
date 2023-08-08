@@ -31,14 +31,3 @@ const chooseFighter = () => {
 
 // Starting Conditions
 //  Player one to choose fighter
-const player1SelectFigher = () => {
-  document.querySelector(".player-1");
-  chooseFighter();
-};
-player1SelectFigher();
-
-// const player2SelectFigher = () => {
-//   document.querySelector(".player-1");
-//   chooseFighter();
-// };
-// player2SelectFigher();
