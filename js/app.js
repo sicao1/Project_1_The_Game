@@ -13,18 +13,27 @@ const imagePairTags = [
 ];
 
 const chooseFighter = () => {
+  let clicked = false;
+
   for (const [imageSelection, targetSelection] of imagePairTags) {
     const image = document.querySelector(imageSelection);
     const showImage = document.querySelector(targetSelection);
 
     image.addEventListener("mouseover", function () {
-      showImage.classList.toggle("hidden");
+      if (!clicked) {
+        showImage.classList.toggle("hidden");
+      }
     });
     image.addEventListener("mouseout", function () {
-      showImage.classList.toggle("hidden");
+      if (!clicked) {
+        showImage.classList.toggle("hidden");
+      }
     });
     image.addEventListener("click", function () {
-      showImage.classList.toggle("hidden");
+      if (!clicked) {
+        showImage.classList.remove("hidden");
+        clicked = true;
+      }
     });
   }
 };
