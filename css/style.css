@@ -53,6 +53,10 @@ li img {
   cursor: pointer;
 }
 
+.prompt-directions-player2 {
+  cursor: pointer;
+}
+
 .stats {
   display: flex;
   justify-content: space-between;

@@ -87,9 +87,15 @@ chooseFighter();
 
 // linked actions of selecting characters to begin fight on "Ready to Fight?"
 // and display instructions
-let playerHealth = 100;
+
+// globally scoped stats
+let player1Health = 100;
+let player2Health = 100;
 let hitPoints;
-let keyPressCount = 0;
+let keyPressCountPlayer1 = 0;
+let keyPressCountPlayer2 = 0;
+let playerActive = 1;
+let playerNonActive = 2;
 
 const startFight = document.querySelector(".prompt-ready");
 startFight.addEventListener("click", () => {
@@ -103,16 +109,22 @@ startFight.addEventListener("click", () => {
   });
 });
 
+// switch player function
+const switchPlayer = () => {
+  playerActive = playerActive === 1 ? 2 : 1;
+  return playerActive;
+};
+console.log(switchPlayer());
+
 // Timed keypresses
 const prompt2 = document.querySelector(".prompt-directions");
 prompt2.addEventListener("click", () => {
   const startTimestamp = Date.now();
   const duration = 5000; // 5 seconds
-  let keyPressCount = 0;
 
   const countKeyPress = (event) => {
     if (event.key === " ") {
-      keyPressCount++;
+      keyPressCountPlayer1++;
     }
   };
 
@@ -124,13 +136,38 @@ prompt2.addEventListener("click", () => {
 
     if (totalTime >= duration) {
       clearInterval(interval);
-      console.log(`Number of key presses: ${keyPressCount}`);
-      console.log((playerHealth = playerHealth - keyPressCount));
-      document.querySelector(
-        ".player--1"
-      ).innerHTML = `Health: ${playerHealth}`;
+      console.log(`Number of key presses: ${keyPressCountPlayer1}`);
+      // console.log((player2Health = player2Health - keyPressCountPlayer1));
+      // document.querySelector(
+      //   `.player--${playerActive}`
+      // ).innerHTML = `Health: ${player2Health}`;
+      const prompt3 = document.querySelector(".prompt-directions-player2");
+      prompt3.classList.toggle("hidden");
+      prompt3.addEventListener("click", () => {
+        prompt3.classList.add("hidden");
+      });
     }
-  }, 100); // Check every 100 milliseconds
+  }, 100);
 });
 
-//Show health and hit points
+const prompt3 = document.querySelector(".prompt-directions-player2");
+prompt3.addEventListener("click", () => {
+  const startTimestamp = Date.now();
+  const duration = 5000;
+
+  const countKeyPress = (event) => {
+    if (event.key === " ") {
+      keyPressCountPlayer2++;
+    }
+  };
+  document.addEventListener("keydown", countKeyPress);
+  const interval = setInterval(() => {
+    const currentTime = Date.now();
+    const totalTime = currentTime - startTimestamp;
+
+    if (totalTime >= duration) {
+      clearInterval(interval);
+      console.log(`Number of key presses: ${keyPressCountPlayer2}`);
+    }
+  });
+});
