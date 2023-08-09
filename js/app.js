@@ -93,11 +93,11 @@ let hitPoints;
 let keyPressCountPlayer1 = 0;
 let keyPressCountPlayer2 = 0;
 let playerActive = 0;
-let keyPressCountPlayer = [1, 2];
+let keyPressCountPlayer = [0, 0];
 
 // switch player function
 const switchPlayer = () => {
-  playerActive = playerActive === 1 ? 2 : 1;
+  playerActive = playerActive === 0 ? 1 : 0;
   return playerActive;
 };
 
