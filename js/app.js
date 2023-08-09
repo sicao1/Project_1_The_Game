@@ -90,8 +90,8 @@ chooseFighter();
 let player1Health = 100;
 let player2Health = 100;
 let hitPoints;
+let keyPressCountPlayer0 = 0;
 let keyPressCountPlayer1 = 0;
-let keyPressCountPlayer2 = 0;
 let playerActive = 0;
 let keyPressCountPlayer = [0, 0];
 
@@ -132,20 +132,28 @@ const timedKeyPress = () => {
 
     if (totalTime >= duration) {
       clearInterval(interval);
-      console.log(
-        `Number of key presses: ${keyPressCountPlayer[playerActive]}`
-      );
-      const promptPlayer2 = document.querySelector(
-        ".prompt-directions-player2"
-      );
-      promptPlayer2.classList.toggle("hidden");
-      promptPlayer2.addEventListener("click", () => {
-        promptPlayer2.classList.add("hidden");
-      });
+      if (playerActive === 1) {
+        console.log(
+          `Number of key presses: ${keyPressCountPlayer[playerActive] / 2}`
+        );
+      } else {
+        console.log(
+          `Number of key presses: ${keyPressCountPlayer[playerActive]}`
+        );
+      }
+      if (playerActive === 0) {
+        const promptPlayer2 = document.querySelector(
+          ".prompt-directions-player2"
+        );
+        promptPlayer2.classList.toggle("hidden");
+        promptPlayer2.addEventListener("click", () => {
+          promptPlayer2.classList.add("hidden");
+        });
+      }
     }
   }, 100);
 };
-
+console.log(playerActive);
 // First occurance of Figther 1 collecting keypresses
 document.querySelector(".prompt-directions").addEventListener("click", () => {
   timedKeyPress();
@@ -155,36 +163,6 @@ document.querySelector(".prompt-directions").addEventListener("click", () => {
 document
   .querySelector(".prompt-directions-player2")
   .addEventListener("click", () => {
-    const startTimestamp = Date.now();
-    const duration = 5000;
-
-    const countKeyPress = (event) => {
-      if (event.key === " ") {
-        keyPressCountPlayer2++;
-      }
-    };
-    document.addEventListener("keydown", countKeyPress);
-    const interval = setInterval(() => {
-      const currentTime = Date.now();
-      const totalTime = currentTime - startTimestamp;
-
-      if (totalTime >= duration) {
-        clearInterval(interval);
-        console.log(`Number of key presses: ${keyPressCountPlayer2}`);
-        keyPressCountPlayer1 = keyPressCountPlayer1 - keyPressCountPlayer2;
-        console.log(keyPressCountPlayer1);
-
-        if (keyPressCountPlayer1 > keyPressCountPlayer2) {
-          player2Health = player2Health - keyPressCountPlayer1;
-          document.querySelector(
-            ".player--2"
-          ).innerHTML = `Health: ${player2Health}`;
-        } else {
-          player1Health = player1Health - keyPressCountPlayer2;
-          document.querySelector(
-            ".player--1"
-          ).innerHTML = `Health: ${player1Health}`;
-        }
-      }
-    }, 100);
+    switchPlayer();
+    timedKeyPress();
   });
