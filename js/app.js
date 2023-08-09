@@ -76,7 +76,7 @@ const chooseFighter2 = () => {
         clicked = true;
         console.log(showImage);
 
-        // Add prompt here to init the series of Prompts to start fight
+        // Prompt player 1 ready
         document.querySelector(".prompt-ready").classList.toggle("hidden");
       }
     });
@@ -84,43 +84,45 @@ const chooseFighter2 = () => {
 };
 chooseFighter();
 
-// LET THE FIGHTING BEGIN
+// linked actions of selecting characters to begin fight on "Ready to Fight?"
+// and display instructions
 
 // globally scoped stats
 let player1Health = 100;
 let player2Health = 100;
 let hitPoints;
-let keyPressCountPlayer0 = 0;
 let keyPressCountPlayer1 = 0;
-let playerActive = 0;
-let keyPressCountPlayer = [0, 0];
+let keyPressCountPlayer2 = 0;
+let playerActive = 1;
+let playerNonActive = 2;
 
-// switch player function
-const switchPlayer = () => {
-  playerActive = playerActive === 0 ? 1 : 0;
-  return playerActive;
-};
-
-// Display start prompts and instructions for player 1
-const starterPrompt = document.querySelector(".prompt-ready");
-starterPrompt.addEventListener("click", () => {
+const promptPlayer1 = document.querySelector(".prompt-ready");
+promptPlayer1.addEventListener("click", () => {
   document.querySelector(".prompt-ready").classList.toggle("hidden");
 
-  const promptPlayer1 = document.querySelector(".prompt-directions");
-  promptPlayer1.classList.toggle("hidden");
-  promptPlayer1.addEventListener("click", () => {
-    promptPlayer1.classList.add("hidden");
+  const promptPlayer1Fight = document.querySelector(".prompt-directions");
+  promptPlayer1Fight.classList.toggle("hidden");
+  promptPlayer1Fight.addEventListener("click", () => {
+    promptPlayer1Fight.classList.add("hidden");
   });
 });
 
-// Game Logic & Timed keypresses
-const timedKeyPress = () => {
+// switch player function
+const switchPlayer = () => {
+  playerActive = playerActive === 1 ? 2 : 1;
+  return playerActive;
+};
+console.log(playerActive);
+
+// Timed keypresses
+const beginCountPlayer1 = document.querySelector(".prompt-directions");
+beginCountPlayer1.addEventListener("click", () => {
   const startTimestamp = Date.now();
   const duration = 5000; // 5 seconds
 
   const countKeyPress = (event) => {
     if (event.key === " ") {
-      keyPressCountPlayer[playerActive]++;
+      keyPressCountPlayer1++;
     }
   };
 
@@ -132,37 +134,49 @@ const timedKeyPress = () => {
 
     if (totalTime >= duration) {
       clearInterval(interval);
-      if (playerActive === 1) {
-        console.log(
-          `Number of key presses: ${keyPressCountPlayer[playerActive] / 2}`
-        );
+      console.log(`Number of key presses: ${keyPressCountPlayer1}`);
+      const promptPlayer2 = document.querySelector(
+        ".prompt-directions-player2"
+      );
+      promptPlayer2.classList.toggle("hidden");
+      promptPlayer2.addEventListener("click", () => {
+        promptPlayer2.classList.add("hidden");
+      });
+    }
+  }, 100);
+});
+
+const beginCountPlayer2 = document.querySelector(".prompt-directions-player2");
+beginCountPlayer2.addEventListener("click", () => {
+  const startTimestamp = Date.now();
+  const duration = 5000;
+
+  const countKeyPress = (event) => {
+    if (event.key === " ") {
+      keyPressCountPlayer2++;
+    }
+  };
+  document.addEventListener("keydown", countKeyPress);
+  const interval = setInterval(() => {
+    const currentTime = Date.now();
+    const totalTime = currentTime - startTimestamp;
+
+    if (totalTime >= duration) {
+      clearInterval(interval);
+      console.log(`Number of key presses: ${keyPressCountPlayer2}`);
+      keyPressCountPlayer1 = keyPressCountPlayer1 - keyPressCountPlayer2;
+
+      if (keyPressCountPlayer1 > keyPressCountPlayer2) {
+        player2Health = player2Health - keyPressCountPlayer1;
+        document.querySelector(
+          ".player--2"
+        ).innerHTML = `Health: ${player2Health}`;
       } else {
-        console.log(
-          `Number of key presses: ${keyPressCountPlayer[playerActive]}`
-        );
-      }
-      if (playerActive === 0) {
-        const promptPlayer2 = document.querySelector(
-          ".prompt-directions-player2"
-        );
-        promptPlayer2.classList.toggle("hidden");
-        promptPlayer2.addEventListener("click", () => {
-          promptPlayer2.classList.add("hidden");
-        });
+        player1Health = player1Health - keyPressCountPlayer2;
+        document.querySelector(
+          ".player--1"
+        ).innerHTML = `Health: ${player1Health}`;
       }
     }
   }, 100);
-};
-console.log(playerActive);
-// First occurance of Figther 1 collecting keypresses
-document.querySelector(".prompt-directions").addEventListener("click", () => {
-  timedKeyPress();
 });
-
-// First occurance of Fighter 2 collecting keypresses
-document
-  .querySelector(".prompt-directions-player2")
-  .addEventListener("click", () => {
-    switchPlayer();
-    timedKeyPress();
-  });
