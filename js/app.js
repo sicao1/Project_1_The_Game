@@ -76,17 +76,15 @@ const chooseFighter2 = () => {
         clicked = true;
         console.log(showImage);
 
-        // added prompt to init fighting
-        const prompt = document.querySelector(".prompt-ready");
-        prompt.classList.toggle("hidden");
+        // Add prompt here to init the series of Prompts to start fight
+        document.querySelector(".prompt-ready").classList.toggle("hidden");
       }
     });
   }
 };
 chooseFighter();
 
-// linked actions of selecting characters to begin fight on "Ready to Fight?"
-// and display instructions
+// LET THE FIGHTING BEGIN
 
 // globally scoped stats
 let player1Health = 100;
@@ -97,18 +95,6 @@ let keyPressCountPlayer2 = 0;
 let playerActive = 1;
 let playerNonActive = 2;
 
-const startFight = document.querySelector(".prompt-ready");
-startFight.addEventListener("click", () => {
-  const prompt = document.querySelector(".prompt-ready");
-  prompt.classList.toggle("hidden");
-
-  const prompt2 = document.querySelector(".prompt-directions");
-  prompt2.classList.toggle("hidden");
-  prompt2.addEventListener("click", () => {
-    prompt2.classList.add("hidden");
-  });
-});
-
 // switch player function
 const switchPlayer = () => {
   playerActive = playerActive === 1 ? 2 : 1;
@@ -116,9 +102,22 @@ const switchPlayer = () => {
 };
 console.log(switchPlayer());
 
+// Display start prompts and instructions for player 1
+const starterPrompt = document.querySelector(".prompt-ready");
+starterPrompt.addEventListener("click", () => {
+  document.querySelector(".prompt-ready").classList.toggle("hidden");
+
+  const promptPlayer1 = document.querySelector(".prompt-directions");
+  promptPlayer1.classList.toggle("hidden");
+  promptPlayer1.addEventListener("click", () => {
+    promptPlayer1.classList.add("hidden");
+  });
+});
+
 // Timed keypresses
-const prompt2 = document.querySelector(".prompt-directions");
-prompt2.addEventListener("click", () => {
+const timedKeyPress = () => {};
+
+document.querySelector(".prompt-directions").addEventListener("click", () => {
   const startTimestamp = Date.now();
   const duration = 5000; // 5 seconds
 

@@ -28,6 +28,10 @@ li img {
   cursor: pointer;
 }
 
+.selector-1 {
+  height: 350px;
+}
+
 .selector-1 img {
   max-width: 350px;
 }
