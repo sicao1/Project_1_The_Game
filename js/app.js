@@ -33,6 +33,7 @@ const chooseFighter = () => {
         showImage.classList.remove("hidden");
         console.log(showImage);
         clicked = true;
+        chooseFighter2();
       }
     });
   }
@@ -60,7 +61,8 @@ const chooseFighter2 = () => {
 
     image.addEventListener("mouseover", function () {
       if (!clicked) {
-        showImage.classList.toggle("hidden");
+        showImage.classList.add("hidden");
+        showImage.classList.remove("hidden");
       }
     });
     image.addEventListener("mouseout", function () {
@@ -71,26 +73,24 @@ const chooseFighter2 = () => {
     image.addEventListener("click", function () {
       if (!clicked) {
         showImage.classList.remove("hidden");
-        console.log(showImage);
         clicked = true;
+        console.log(showImage);
       }
     });
   }
 };
 
+chooseFighter();
 // Starting Conditions
 //  Player one to choose fighter
-const player1Choose = () => {
-  document.querySelector(".player-1");
-  chooseFighter();
-};
-
-const player2Choose = () => {
-  document.querySelector(".player-2");
-  chooseFighter2();
-};
-
-chooseFighter2();
-
-// const source = document.querySelector(".selector-2 img");
-// source.src = "imgs/TacoBell.png";
+// let playerActive = 1;
+// function displayFigther() {
+//   if (playerActive === 1) {
+//     chooseFighter();
+//     playerActive = 0;
+//   } else {
+//     chooseFighter2();
+//     playerActive = 1;
+//   }
+// }
+// displayFigther();
