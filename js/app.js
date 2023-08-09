@@ -115,9 +115,7 @@ starterPrompt.addEventListener("click", () => {
 });
 
 // Timed keypresses
-const timedKeyPress = () => {};
-
-document.querySelector(".prompt-directions").addEventListener("click", () => {
+const timedKeyPress = () => {
   const startTimestamp = Date.now();
   const duration = 5000; // 5 seconds
 
@@ -146,40 +144,47 @@ document.querySelector(".prompt-directions").addEventListener("click", () => {
       });
     }
   }, 100);
+};
+
+// First occurance of Figther 1 collecting keypresses
+document.querySelector(".prompt-directions").addEventListener("click", () => {
+  timedKeyPress();
 });
 
-const prompt3 = document.querySelector(".prompt-directions-player2");
-prompt3.addEventListener("click", () => {
-  const startTimestamp = Date.now();
-  const duration = 5000;
+// First occurance of Fighter 2 collecting keypresses
+document
+  .querySelector(".prompt-directions-player2")
+  .addEventListener("click", () => {
+    const startTimestamp = Date.now();
+    const duration = 5000;
 
-  const countKeyPress = (event) => {
-    if (event.key === " ") {
-      keyPressCountPlayer2++;
-    }
-  };
-  document.addEventListener("keydown", countKeyPress);
-  const interval = setInterval(() => {
-    const currentTime = Date.now();
-    const totalTime = currentTime - startTimestamp;
-
-    if (totalTime >= duration) {
-      clearInterval(interval);
-      console.log(`Number of key presses: ${keyPressCountPlayer2}`);
-      keyPressCountPlayer1 = keyPressCountPlayer1 - keyPressCountPlayer2;
-      console.log(keyPressCountPlayer1);
-
-      if (keyPressCountPlayer1 > keyPressCountPlayer2) {
-        player2Health = player2Health - keyPressCountPlayer1;
-        document.querySelector(
-          ".player--2"
-        ).innerHTML = `Health: ${player2Health}`;
-      } else {
-        player1Health = player1Health - keyPressCountPlayer2;
-        document.querySelector(
-          ".player--1"
-        ).innerHTML = `Health: ${player1Health}`;
+    const countKeyPress = (event) => {
+      if (event.key === " ") {
+        keyPressCountPlayer2++;
       }
-    }
-  }, 100);
-});
+    };
+    document.addEventListener("keydown", countKeyPress);
+    const interval = setInterval(() => {
+      const currentTime = Date.now();
+      const totalTime = currentTime - startTimestamp;
+
+      if (totalTime >= duration) {
+        clearInterval(interval);
+        console.log(`Number of key presses: ${keyPressCountPlayer2}`);
+        keyPressCountPlayer1 = keyPressCountPlayer1 - keyPressCountPlayer2;
+        console.log(keyPressCountPlayer1);
+
+        if (keyPressCountPlayer1 > keyPressCountPlayer2) {
+          player2Health = player2Health - keyPressCountPlayer1;
+          document.querySelector(
+            ".player--2"
+          ).innerHTML = `Health: ${player2Health}`;
+        } else {
+          player1Health = player1Health - keyPressCountPlayer2;
+          document.querySelector(
+            ".player--1"
+          ).innerHTML = `Health: ${player1Health}`;
+        }
+      }
+    }, 100);
+  });
