@@ -75,22 +75,18 @@ const chooseFighter2 = () => {
         showImage.classList.remove("hidden");
         clicked = true;
         console.log(showImage);
+
+        // added prompt to init fighting
+        const prompt = document.querySelector(".prompt");
+        prompt.classList.remove("hidden");
       }
     });
   }
 };
-
 chooseFighter();
-// Starting Conditions
-//  Player one to choose fighter
-// let playerActive = 1;
-// function displayFigther() {
-//   if (playerActive === 1) {
-//     chooseFighter();
-//     playerActive = 0;
-//   } else {
-//     chooseFighter2();
-//     playerActive = 1;
-//   }
-// }
-// displayFigther();
+
+// linked actions of selecting characters to begin fight on "Ready to Fight?"
+const startFight = document.querySelector(".prompt");
+startFight.addEventListener("click", () => {
+  console.log(`Let's fight`);
+});
