@@ -92,15 +92,14 @@ let player2Health = 100;
 let hitPoints;
 let keyPressCountPlayer1 = 0;
 let keyPressCountPlayer2 = 0;
-let playerActive = 1;
-let playerNonActive = 2;
+let playerActive = 0;
+let keyPressCountPlayer = [1, 2];
 
 // switch player function
 const switchPlayer = () => {
   playerActive = playerActive === 1 ? 2 : 1;
   return playerActive;
 };
-console.log(switchPlayer());
 
 // Display start prompts and instructions for player 1
 const starterPrompt = document.querySelector(".prompt-ready");
@@ -121,7 +120,7 @@ const timedKeyPress = () => {
 
   const countKeyPress = (event) => {
     if (event.key === " ") {
-      keyPressCountPlayer1++;
+      keyPressCountPlayer[playerActive]++;
     }
   };
 
@@ -133,10 +132,9 @@ const timedKeyPress = () => {
 
     if (totalTime >= duration) {
       clearInterval(interval);
-      console.log(`Number of key presses: ${keyPressCountPlayer1}`);
-      // document.querySelector(
-      //   `.player--${playerActive}`
-      // ).innerHTML = `Health: ${player2Health}`;
+      console.log(
+        `Number of key presses: ${keyPressCountPlayer[playerActive]}`
+      );
       const prompt3 = document.querySelector(".prompt-directions-player2");
       prompt3.classList.toggle("hidden");
       prompt3.addEventListener("click", () => {
