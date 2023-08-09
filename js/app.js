@@ -122,13 +122,13 @@ prompt2.addEventListener("click", () => {
   const startTimestamp = Date.now();
   const duration = 5000; // 5 seconds
 
-  const countKeyPress1 = (event) => {
+  const countKeyPress = (event) => {
     if (event.key === " ") {
       keyPressCountPlayer1++;
     }
   };
 
-  document.addEventListener("keydown", countKeyPress1);
+  document.addEventListener("keydown", countKeyPress);
 
   const interval = setInterval(() => {
     const currentTime = Date.now();
@@ -154,12 +154,12 @@ prompt3.addEventListener("click", () => {
   const startTimestamp = Date.now();
   const duration = 5000;
 
-  const countKeyPress2 = (event) => {
+  const countKeyPress = (event) => {
     if (event.key === " ") {
       keyPressCountPlayer2++;
     }
   };
-  document.addEventListener("keydown", countKeyPress2);
+  document.addEventListener("keydown", countKeyPress);
   const interval = setInterval(() => {
     const currentTime = Date.now();
     const totalTime = currentTime - startTimestamp;
