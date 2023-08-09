@@ -77,8 +77,8 @@ const chooseFighter2 = () => {
         console.log(showImage);
 
         // added prompt to init fighting
-        const prompt = document.querySelector(".prompt");
-        prompt.classList.remove("hidden");
+        const prompt = document.querySelector(".prompt-ready");
+        prompt.classList.toggle("hidden");
       }
     });
   }
@@ -86,7 +86,21 @@ const chooseFighter2 = () => {
 chooseFighter();
 
 // linked actions of selecting characters to begin fight on "Ready to Fight?"
-const startFight = document.querySelector(".prompt");
+// and display instructions
+const playerHealth = 100;
+let hitPoints;
+let keyPressCount = 0;
+
+const startFight = document.querySelector(".prompt-ready");
 startFight.addEventListener("click", () => {
-  console.log(`Let's fight`);
+  const prompt = document.querySelector(".prompt-ready");
+  prompt.classList.toggle("hidden");
+
+  const prompt2 = document.querySelector(".prompt-directions");
+  prompt2.classList.toggle("hidden");
+  prompt2.addEventListener("click", () => {
+    prompt2.classList.add("hidden");
+  });
 });
+
+// Timed keypresses

@@ -44,3 +44,16 @@ li img {
   display: flex;
   justify-content: space-between;
 }
+
+.prompt-ready {
+  cursor: pointer;
+}
+
+.prompt-directions {
+  cursor: pointer;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+}
