@@ -104,3 +104,30 @@ startFight.addEventListener("click", () => {
 });
 
 // Timed keypresses
+const prompt2 = document.querySelector(".prompt-directions");
+prompt2.addEventListener("click", () => {
+  const startTimestamp = Date.now();
+  const duration = 5000; // 5 seconds
+  let keyPressCount = 0;
+
+  const countKeyPress = (event) => {
+    if (event.key === " ") {
+      keyPressCount++;
+    }
+  };
+
+  document.addEventListener("keydown", countKeyPress);
+
+  const interval = setInterval(() => {
+    const currentTime = Date.now();
+    const totalTime = currentTime - startTimestamp;
+
+    if (totalTime >= duration) {
+      clearInterval(interval);
+      console.log(`Number of key presses: ${keyPressCount}`);
+    }
+  }, 100); // Check every 100 milliseconds
+  hitPoints = keyPressCount;
+});
+
+//Show health and hit points
