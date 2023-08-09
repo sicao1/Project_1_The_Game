@@ -87,7 +87,7 @@ chooseFighter();
 
 // linked actions of selecting characters to begin fight on "Ready to Fight?"
 // and display instructions
-const playerHealth = 100;
+let playerHealth = 100;
 let hitPoints;
 let keyPressCount = 0;
 
@@ -125,9 +125,12 @@ prompt2.addEventListener("click", () => {
     if (totalTime >= duration) {
       clearInterval(interval);
       console.log(`Number of key presses: ${keyPressCount}`);
+      console.log((playerHealth = playerHealth - keyPressCount));
+      document.querySelector(
+        ".player--1"
+      ).innerHTML = `Health: ${playerHealth}`;
     }
   }, 100); // Check every 100 milliseconds
-  hitPoints = keyPressCount;
 });
 
 //Show health and hit points
