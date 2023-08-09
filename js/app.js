@@ -122,13 +122,13 @@ prompt2.addEventListener("click", () => {
   const startTimestamp = Date.now();
   const duration = 5000; // 5 seconds
 
-  const countKeyPress = (event) => {
+  const countKeyPress1 = (event) => {
     if (event.key === " ") {
       keyPressCountPlayer1++;
     }
   };
 
-  document.addEventListener("keydown", countKeyPress);
+  document.addEventListener("keydown", countKeyPress1);
 
   const interval = setInterval(() => {
     const currentTime = Date.now();
@@ -137,7 +137,6 @@ prompt2.addEventListener("click", () => {
     if (totalTime >= duration) {
       clearInterval(interval);
       console.log(`Number of key presses: ${keyPressCountPlayer1}`);
-      // console.log((player2Health = player2Health - keyPressCountPlayer1));
       // document.querySelector(
       //   `.player--${playerActive}`
       // ).innerHTML = `Health: ${player2Health}`;
@@ -155,12 +154,12 @@ prompt3.addEventListener("click", () => {
   const startTimestamp = Date.now();
   const duration = 5000;
 
-  const countKeyPress = (event) => {
+  const countKeyPress2 = (event) => {
     if (event.key === " ") {
       keyPressCountPlayer2++;
     }
   };
-  document.addEventListener("keydown", countKeyPress);
+  document.addEventListener("keydown", countKeyPress2);
   const interval = setInterval(() => {
     const currentTime = Date.now();
     const totalTime = currentTime - startTimestamp;
@@ -168,6 +167,20 @@ prompt3.addEventListener("click", () => {
     if (totalTime >= duration) {
       clearInterval(interval);
       console.log(`Number of key presses: ${keyPressCountPlayer2}`);
+      keyPressCountPlayer1 = keyPressCountPlayer1 - keyPressCountPlayer2;
+      console.log(keyPressCountPlayer1);
+
+      if (keyPressCountPlayer1 > keyPressCountPlayer2) {
+        player2Health = player2Health - keyPressCountPlayer1;
+        document.querySelector(
+          ".player--2"
+        ).innerHTML = `Health: ${player2Health}`;
+      } else {
+        player1Health = player1Health - keyPressCountPlayer2;
+        document.querySelector(
+          ".player--1"
+        ).innerHTML = `Health: ${player1Health}`;
+      }
     }
-  });
+  }, 100);
 });
