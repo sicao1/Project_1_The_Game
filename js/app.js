@@ -113,7 +113,7 @@ starterPrompt.addEventListener("click", () => {
   });
 });
 
-// Timed keypresses
+// Game Logic & Timed keypresses
 const timedKeyPress = () => {
   const startTimestamp = Date.now();
   const duration = 5000; // 5 seconds
@@ -135,10 +135,12 @@ const timedKeyPress = () => {
       console.log(
         `Number of key presses: ${keyPressCountPlayer[playerActive]}`
       );
-      const prompt3 = document.querySelector(".prompt-directions-player2");
-      prompt3.classList.toggle("hidden");
-      prompt3.addEventListener("click", () => {
-        prompt3.classList.add("hidden");
+      const promptPlayer2 = document.querySelector(
+        ".prompt-directions-player2"
+      );
+      promptPlayer2.classList.toggle("hidden");
+      promptPlayer2.addEventListener("click", () => {
+        promptPlayer2.classList.add("hidden");
       });
     }
   }, 100);
