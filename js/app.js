@@ -99,22 +99,12 @@ let playerNonActive = 2;
 const promptPlayer1 = document.querySelector(".prompt-ready");
 promptPlayer1.addEventListener("click", () => {
   document.querySelector(".prompt-ready").classList.toggle("hidden");
-  player1Fight();
-});
 
-const player1Fight = () => {
   const promptPlayer1Fight = document.querySelector(".prompt-directions");
   promptPlayer1Fight.classList.toggle("hidden");
   promptPlayer1Fight.addEventListener("click", () => {
     promptPlayer1Fight.classList.add("hidden");
   });
-
-  // switch player function
-  // const switchPlayer = () => {
-  //   playerActive = playerActive === 1 ? 2 : 1;
-  //   return playerActive;
-  // };
-  // console.log(playerActive);
 
   // Timed keypresses for Player 1
   const player1 = () => {
@@ -197,7 +187,9 @@ const player1Fight = () => {
             ).innerHTML = `Health: ${player1Health}`;
           }
           checkHealth();
-          player1Fight();
+          document
+            .querySelector(".prompt-directions")
+            .classList.toggle("hidden");
         }
       }, 100);
     });
@@ -216,4 +208,4 @@ const player1Fight = () => {
       console.log(`Player 1 is the winner`);
     }
   };
-};
+});
