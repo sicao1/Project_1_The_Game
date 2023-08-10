@@ -93,18 +93,22 @@ let player2Health = 100;
 let hitPoints;
 let keyPressCountPlayer1 = 0;
 let keyPressCountPlayer2 = 0;
-let playerActive = 1;
+let playerActive = true;
 let playerNonActive = 2;
 
 const promptPlayer1 = document.querySelector(".prompt-ready");
 promptPlayer1.addEventListener("click", () => {
   document.querySelector(".prompt-ready").classList.toggle("hidden");
 
-  const promptPlayer1Fight = document.querySelector(".prompt-directions");
-  promptPlayer1Fight.classList.toggle("hidden");
-  promptPlayer1Fight.addEventListener("click", () => {
-    promptPlayer1Fight.classList.add("hidden");
-  });
+  const player1Fight = () => {
+    const promptPlayer1Fight = document.querySelector(".prompt-directions");
+    promptPlayer1Fight.classList.toggle("hidden");
+    promptPlayer1Fight.addEventListener("click", () => {
+      promptPlayer1Fight.classList.add("hidden");
+    });
+  };
+
+  player1Fight();
 });
 
 // switch player function
@@ -177,6 +181,15 @@ const player2 = () => {
           document.querySelector(
             ".player--2"
           ).innerHTML = `Health: ${player2Health}`;
+        } else if (keyPressCountPlayer1 === keyPressCountPlayer2) {
+          player1Health = player1Health - keyPressCountPlayer2;
+          player2Health = player2Health - keyPressCountPlayer1;
+          document.querySelector(
+            ".player--1"
+          ).innerHTML = `Health: ${player1Health}`;
+          document.querySelector(
+            ".player--2"
+          ).innerHTML = `Health: ${player2Health}`;
         } else {
           player1Health = player1Health - keyPressCountPlayer2;
           document.querySelector(
@@ -184,6 +197,9 @@ const player2 = () => {
           ).innerHTML = `Health: ${player1Health}`;
         }
       }
+      // if (player1Health > 0 && player2Health > 0) {
+      //   player1Fight();
+      // }
     }, 100);
   });
 };
