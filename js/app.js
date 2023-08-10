@@ -87,13 +87,23 @@ chooseFighter();
 // LETS FIGHT
 
 // globally scoped stats
-let player1Health = 10;
-let player2Health = 10;
+// let player1Health = 10;
+// let player2Health = 10;
 let hitPoints;
-let keyPressCountPlayer1 = 0;
-let keyPressCountPlayer2 = 0;
+// let keyPressCountPlayer1 = 0;
+// let keyPressCountPlayer2 = 0;
 let playerActive = true;
 let playerNonActive = 2;
+
+const player1 = {
+  health: 10,
+  keyPressCount: 0,
+};
+
+const player2 = {
+  health: 10,
+  keyPressCount: 0,
+};
 
 // init prompts and directions for user
 const promptPlayer1 = document.querySelector(".prompt-ready");
@@ -107,7 +117,7 @@ promptPlayer1.addEventListener("click", () => {
   });
 
   // Timed keypresses for Player 1
-  const player1 = () => {
+  const startPlayer1 = () => {
     const beginCountPlayer1 = document.querySelector(".prompt-directions");
     beginCountPlayer1.addEventListener("click", () => {
       const startTimestamp = Date.now();
@@ -115,7 +125,7 @@ promptPlayer1.addEventListener("click", () => {
 
       const countKeyPress = (event) => {
         if (event.key === " ") {
-          keyPressCountPlayer1++;
+          player1.keyPressCount++;
         }
       };
 
@@ -127,7 +137,7 @@ promptPlayer1.addEventListener("click", () => {
 
         if (totalTime >= duration) {
           clearInterval(interval);
-          console.log(`Number of key presses: ${keyPressCountPlayer1}`);
+          console.log(`Number of key presses: ${player1.keyPressCount}`);
           const promptPlayer2 = document.querySelector(
             ".prompt-directions-player2"
           );
@@ -139,11 +149,11 @@ promptPlayer1.addEventListener("click", () => {
       }, 100);
     });
   };
-  // player1();
+  //startPlayer1();
 
   // Timed keypresses for Player 2
   // After player 2 turn decrease health accordingly
-  const player2 = () => {
+  const startPlayer2 = () => {
     const beginCountPlayer2 = document.querySelector(
       ".prompt-directions-player2"
     );
@@ -153,7 +163,7 @@ promptPlayer1.addEventListener("click", () => {
 
       const countKeyPress = (event) => {
         if (event.key === " ") {
-          keyPressCountPlayer2++;
+          player2.keyPressCount++;
         }
       };
       document.addEventListener("keydown", countKeyPress);
@@ -163,28 +173,28 @@ promptPlayer1.addEventListener("click", () => {
 
         if (totalTime >= duration) {
           clearInterval(interval);
-          console.log(`Number of key presses: ${keyPressCountPlayer2}`);
-          keyPressCountPlayer1 = keyPressCountPlayer1 - keyPressCountPlayer2;
+          console.log(`Number of key presses: ${player2.keyPressCount}`);
+          player1.keyPressCount = player1.keyPressCount - player2.keyPressCount;
 
-          if (keyPressCountPlayer1 > keyPressCountPlayer2) {
-            player2Health = player2Health - keyPressCountPlayer1;
+          if (player1.keyPressCount > player2.keyPressCount) {
+            player2.health = player2.health - player1.keyPressCount;
             document.querySelector(
               ".player--2"
-            ).innerHTML = `Health: ${player2Health}`;
-          } else if (keyPressCountPlayer1 === keyPressCountPlayer2) {
-            player1Health = player1Health - keyPressCountPlayer2;
-            player2Health = player2Health - keyPressCountPlayer1;
+            ).innerHTML = `Health: ${player2.health}`;
+          } else if (player1.keyPressCount === player2.keyPressCount) {
+            player1.health = player1.health - player2.keyPressCount;
+            player2.health = player2.health - player1.keyPressCount;
             document.querySelector(
               ".player--1"
-            ).innerHTML = `Health: ${player1Health}`;
+            ).innerHTML = `Health: ${player1.health}`;
             document.querySelector(
               ".player--2"
-            ).innerHTML = `Health: ${player2Health}`;
+            ).innerHTML = `Health: ${player2.health}`;
           } else {
-            player1Health = player1Health - keyPressCountPlayer2;
+            player1.health = player1.health - player2.keyPressCount;
             document.querySelector(
               ".player--1"
-            ).innerHTML = `Health: ${player1Health}`;
+            ).innerHTML = `Health: ${player1.health}`;
           }
           checkHealth();
           document
@@ -196,15 +206,15 @@ promptPlayer1.addEventListener("click", () => {
   };
   // player2();
 
-  player1();
-  player2();
+  startPlayer1();
+  startPlayer2();
 
   const checkHealth = () => {
-    if (player1Health <= 0) {
+    if (player1.health <= 0) {
       console.log(`Player 2 is the winner`);
-    } else if (player1Health <= 0 && player2Health <= 0) {
+    } else if (player1.health <= 0 && player2.health <= 0) {
       console.log(`It's a draw, eat healthier`);
-    } else if (player2Health <= 0) {
+    } else if (player2.health <= 0) {
       console.log(`Player 1 is the winner`);
     }
   };
