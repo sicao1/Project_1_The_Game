@@ -126,60 +126,27 @@ const timedKeyPresses = (player, duration, promptToShowNext) => {
 
 const player1 = {
   health: 10,
-  keyPressCount: [],
+  keyPressCount: 0,
 };
 
 const player2 = {
   health: 10,
-  keyPressCount: [],
+  keyPressCount: 0,
 };
 
 // init prompts and directions for user
 const promptPlayer1 = document.querySelector(".prompt-ready");
-promptPlayer1.addEventListener("click", () => {
-  document.querySelector(".prompt-ready").classList.toggle("hidden");
+const promptPlayer2 = document.querySelector(".prompt-directions-player2");
 
+promptPlayer1.addEventListener("click", () => {
+  promptPlayer1.classList.toggle("hidden");
   const promptPlayer1Fight = document.querySelector(".prompt-directions");
   promptPlayer1Fight.classList.toggle("hidden");
   promptPlayer1Fight.addEventListener("click", () => {
     promptPlayer1Fight.classList.add("hidden");
+    timedKeyPresses(1, 5000, promptPlayer2);
   });
-
-  // Timed keypresses for Player 1
-  // const startPlayer1 = () => {
-  //   const beginCountPlayer1 = document.querySelector(".prompt-directions");
-  //   beginCountPlayer1.addEventListener("click", () => {
-  //     const startTimestamp = Date.now();
-  //     const duration = 5000; // 5 seconds
-
-  //     const countKeyPress = (event) => {
-  //       if (event.key === " ") {
-  //         player1.keyPressCount++;
-  //         console.log(player1.keyPressCount);
-  //       }
-  //     };
-
-  //     document.addEventListener("keydown", countKeyPress);
-
-  //     const interval = setInterval(() => {
-  //       const currentTime = Date.now();
-  //       const totalTime = currentTime - startTimestamp;
-
-  //       if (totalTime >= duration) {
-  //         clearInterval(interval);
-  //         console.log(`Number of key presses: ${player1.keyPressCount}`);
-  //         const promptPlayer2 = document.querySelector(
-  //           ".prompt-directions-player2"
-  //         );
-  //         promptPlayer2.classList.toggle("hidden");
-  //         promptPlayer2.addEventListener("click", () => {
-  //           promptPlayer2.classList.add("hidden");
-  //         });
-  //       }
-  //     }, 100);
-  //   });
-  // };
-  //startPlayer1();
+});
 
   // Timed keypresses for Player 2
   // After player 2 turn decrease health accordingly
