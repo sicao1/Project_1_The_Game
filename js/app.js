@@ -145,6 +145,7 @@ promptPlayer1.addEventListener("click", () => {
   promptPlayer1Fight.addEventListener("click", () => {
     promptPlayer1Fight.classList.add("hidden");
     timedKeyPresses(1, 5000, promptPlayer2);
+    results();
   });
 });
 
@@ -157,19 +158,18 @@ const startPlayer2 = () => {
   beginCountPlayer2.addEventListener("click", () => {
     beginCountPlayer2.classList.add("hidden");
     timedKeyPresses(2, 5000, document.querySelector(".prompt-directions"));
-    resolveTurn();
   });
 };
 
-const resolveTurn = () => {
+const results = () => {
   if (player1.keyPressCount > player2.keyPressCount) {
-    player2.health = player2.health - player1.keyPressCount;
+    player2.health -= player1.keyPressCount;
     document.querySelector(
       ".player--2"
     ).innerHTML = `Health: ${player2.health}`;
   } else if (player1.keyPressCount === player2.keyPressCount) {
-    player1.health = player1.health - player2.keyPressCount;
-    player2.health = player2.health - player1.keyPressCount;
+    player1.health -= player2.keyPressCount;
+    player2.health -= player1.keyPressCount;
     document.querySelector(
       ".player--1"
     ).innerHTML = `Health: ${player1.health}`;
@@ -177,15 +177,11 @@ const resolveTurn = () => {
       ".player--2"
     ).innerHTML = `Health: ${player2.health}`;
   } else {
-    player1.health = player1.health - player2.keyPressCount;
+    player1.health -= player2.keyPressCount;
     document.querySelector(
       ".player--1"
     ).innerHTML = `Health: ${player1.health}`;
   }
-
-  document.querySelector(".player--1").innerHTML = `Health: ${player1.health}`;
-  document.querySelector(".player--2").innerHTML = `Health: ${player2.health}`;
-
   checkHealth();
 };
 
