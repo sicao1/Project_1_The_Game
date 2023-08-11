@@ -84,15 +84,44 @@ const chooseFighter2 = () => {
 chooseFighter();
 
 // LETS FIGHT
+// Create a function to handle timed keypresses for players
+// start timer function
+const timedKeyPresses = (player, duration) => {
+  let keyPressCount = 0;
+  let startTimestamp = Date.now();
+  let interval;
 
-// globally scoped stats
-// let player1Health = 10;
-// let player2Health = 10;
-let hitPoints;
-// let keyPressCountPlayer1 = 0;
-// let keyPressCountPlayer2 = 0;
-let playerActive = true;
-let playerNonActive = 2;
+  // record keypress function
+  const countKeyPress = (event) => {
+    if (event.key === " ") {
+      keyPressCount++;
+      console.log(`Player ${player} key presses: ${keyPressCount}`);
+    }
+  };
+
+  document.addEventListener("keydown", countKeyPress);
+
+  // stop timer function
+  interval = setInterval(() => {
+    const currentTime = Date.now();
+    const totalTime = currentTime - startTimestamp;
+
+    // when the 5 second timer is up
+    if (totalTime >= duration) {
+      clearInterval(interval);
+      // troubleshoot the double ++ due to eventlistener doubling up
+      document.removeEventListener("keydown", countKeyPress);
+
+      console.log(`Player ${player} ended with key presses: ${keyPressCount}`);
+
+      if (player === 1) {
+        player1.keyPressCount = keyPressCount;
+      } else if (player === 2) {
+        player2.keyPressCount = keyPressCount;
+      }
+    }
+  }, 100);
+};
 
 const player1 = {
   health: 10,
@@ -116,39 +145,39 @@ promptPlayer1.addEventListener("click", () => {
   });
 
   // Timed keypresses for Player 1
-  const startPlayer1 = () => {
-    const beginCountPlayer1 = document.querySelector(".prompt-directions");
-    beginCountPlayer1.addEventListener("click", () => {
-      const startTimestamp = Date.now();
-      const duration = 5000; // 5 seconds
+  // const startPlayer1 = () => {
+  //   const beginCountPlayer1 = document.querySelector(".prompt-directions");
+  //   beginCountPlayer1.addEventListener("click", () => {
+  //     const startTimestamp = Date.now();
+  //     const duration = 5000; // 5 seconds
 
-      const countKeyPress = (event) => {
-        if (event.key === " ") {
-          player1.keyPressCount++;
-          console.log(player1.keyPressCount);
-        }
-      };
+  //     const countKeyPress = (event) => {
+  //       if (event.key === " ") {
+  //         player1.keyPressCount++;
+  //         console.log(player1.keyPressCount);
+  //       }
+  //     };
 
-      document.addEventListener("keydown", countKeyPress);
+  //     document.addEventListener("keydown", countKeyPress);
 
-      const interval = setInterval(() => {
-        const currentTime = Date.now();
-        const totalTime = currentTime - startTimestamp;
+  //     const interval = setInterval(() => {
+  //       const currentTime = Date.now();
+  //       const totalTime = currentTime - startTimestamp;
 
-        if (totalTime >= duration) {
-          clearInterval(interval);
-          console.log(`Number of key presses: ${player1.keyPressCount}`);
-          const promptPlayer2 = document.querySelector(
-            ".prompt-directions-player2"
-          );
-          promptPlayer2.classList.toggle("hidden");
-          promptPlayer2.addEventListener("click", () => {
-            promptPlayer2.classList.add("hidden");
-          });
-        }
-      }, 100);
-    });
-  };
+  //       if (totalTime >= duration) {
+  //         clearInterval(interval);
+  //         console.log(`Number of key presses: ${player1.keyPressCount}`);
+  //         const promptPlayer2 = document.querySelector(
+  //           ".prompt-directions-player2"
+  //         );
+  //         promptPlayer2.classList.toggle("hidden");
+  //         promptPlayer2.addEventListener("click", () => {
+  //           promptPlayer2.classList.add("hidden");
+  //         });
+  //       }
+  //     }, 100);
+  //   });
+  // };
   //startPlayer1();
 
   // Timed keypresses for Player 2
@@ -206,7 +235,7 @@ promptPlayer1.addEventListener("click", () => {
   };
   // player2();
 
-  startPlayer1();
+  // startPlayer1();
   startPlayer2();
 
   const checkHealth = () => {
