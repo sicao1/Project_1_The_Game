@@ -97,12 +97,12 @@ let playerNonActive = 2;
 
 const player1 = {
   health: 10,
-  keyPressCount: 0,
+  keyPressCount: [],
 };
 
 const player2 = {
   health: 10,
-  keyPressCount: 0,
+  keyPressCount: [],
 };
 
 // init prompts and directions for user
@@ -126,6 +126,7 @@ promptPlayer1.addEventListener("click", () => {
       const countKeyPress = (event) => {
         if (event.key === " ") {
           player1.keyPressCount++;
+          console.log(player1.keyPressCount);
         }
       };
 
