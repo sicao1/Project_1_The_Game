@@ -83,10 +83,9 @@ const chooseFighter2 = () => {
 };
 chooseFighter();
 
-// LETS FIGHT
 // Create a function to handle timed keypresses for players
 // start timer function
-const timedKeyPresses = (player, duration, promptToShowNext) => {
+const timedKeyPresses = (player, duration, elementToShowNext) => {
   let keyPressCount = 0;
   let startTimestamp = Date.now();
   let interval;
@@ -119,7 +118,8 @@ const timedKeyPresses = (player, duration, promptToShowNext) => {
       } else if (player === 2) {
         player2.keyPressCount = keyPressCount;
       }
-      promptToShowNext.classList.remove("hidden");
+
+      elementToShowNext.classList.remove("hidden");
     }
   }, 100);
 };
@@ -148,71 +148,55 @@ promptPlayer1.addEventListener("click", () => {
   });
 });
 
-  // Timed keypresses for Player 2
-  // After player 2 turn decrease health accordingly
-  const startPlayer2 = () => {
-    const beginCountPlayer2 = document.querySelector(
-      ".prompt-directions-player2"
-    );
-    beginCountPlayer2.addEventListener("click", () => {
-      const startTimestamp = Date.now();
-      const duration = 5000;
+// Timed keypresses for Player 2
+// After player 2 turn decrease health accordingly
+const startPlayer2 = () => {
+  const beginCountPlayer2 = document.querySelector(
+    ".prompt-directions-player2"
+  );
+  beginCountPlayer2.addEventListener("click", () => {
+    beginCountPlayer2.classList.add("hidden");
+    timedKeyPresses(2, 5000, document.querySelector(".prompt-directions"));
+    resolveTurn();
+  });
+};
 
-      const countKeyPress = (event) => {
-        if (event.key === " ") {
-          player2.keyPressCount++;
-        }
-      };
-      document.addEventListener("keydown", countKeyPress);
-      const interval = setInterval(() => {
-        const currentTime = Date.now();
-        const totalTime = currentTime - startTimestamp;
+const resolveTurn = () => {
+  if (player1.keyPressCount > player2.keyPressCount) {
+    player2.health = player2.health - player1.keyPressCount;
+    document.querySelector(
+      ".player--2"
+    ).innerHTML = `Health: ${player2.health}`;
+  } else if (player1.keyPressCount === player2.keyPressCount) {
+    player1.health = player1.health - player2.keyPressCount;
+    player2.health = player2.health - player1.keyPressCount;
+    document.querySelector(
+      ".player--1"
+    ).innerHTML = `Health: ${player1.health}`;
+    document.querySelector(
+      ".player--2"
+    ).innerHTML = `Health: ${player2.health}`;
+  } else {
+    player1.health = player1.health - player2.keyPressCount;
+    document.querySelector(
+      ".player--1"
+    ).innerHTML = `Health: ${player1.health}`;
+  }
 
-        if (totalTime >= duration) {
-          clearInterval(interval);
-          console.log(`Number of key presses: ${player2.keyPressCount}`);
-          player1.keyPressCount = player1.keyPressCount - player2.keyPressCount;
+  document.querySelector(".player--1").innerHTML = `Health: ${player1.health}`;
+  document.querySelector(".player--2").innerHTML = `Health: ${player2.health}`;
 
-          if (player1.keyPressCount > player2.keyPressCount) {
-            player2.health = player2.health - player1.keyPressCount;
-            document.querySelector(
-              ".player--2"
-            ).innerHTML = `Health: ${player2.health}`;
-          } else if (player1.keyPressCount === player2.keyPressCount) {
-            player1.health = player1.health - player2.keyPressCount;
-            player2.health = player2.health - player1.keyPressCount;
-            document.querySelector(
-              ".player--1"
-            ).innerHTML = `Health: ${player1.health}`;
-            document.querySelector(
-              ".player--2"
-            ).innerHTML = `Health: ${player2.health}`;
-          } else {
-            player1.health = player1.health - player2.keyPressCount;
-            document.querySelector(
-              ".player--1"
-            ).innerHTML = `Health: ${player1.health}`;
-          }
-          checkHealth();
-          document
-            .querySelector(".prompt-directions")
-            .classList.toggle("hidden");
-        }
-      }, 100);
-    });
-  };
-  // player2();
+  checkHealth();
+};
 
-  // startPlayer1();
-  startPlayer2();
+const checkHealth = () => {
+  if (player1.health <= 0) {
+    console.log(`Player 2 is the winner`);
+  } else if (player2.health <= 0) {
+    console.log(`Player 1 is the winner`);
+  } else if (player1.health <= 0 && player2.health <= 0) {
+    console.log(`It's a draw, eat healthier`);
+  }
+};
 
-  const checkHealth = () => {
-    if (player1.health <= 0) {
-      console.log(`Player 2 is the winner`);
-    } else if (player1.health <= 0 && player2.health <= 0) {
-      console.log(`It's a draw, eat healthier`);
-    } else if (player2.health <= 0) {
-      console.log(`Player 1 is the winner`);
-    }
-  };
-});
+startPlayer2();
