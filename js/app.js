@@ -86,7 +86,7 @@ chooseFighter();
 // LETS FIGHT
 // Create a function to handle timed keypresses for players
 // start timer function
-const timedKeyPresses = (player, duration) => {
+const timedKeyPresses = (player, duration, promptToShowNext) => {
   let keyPressCount = 0;
   let startTimestamp = Date.now();
   let interval;
@@ -119,6 +119,7 @@ const timedKeyPresses = (player, duration) => {
       } else if (player === 2) {
         player2.keyPressCount = keyPressCount;
       }
+      promptToShowNext.classList.remove("hidden");
     }
   }, 100);
 };
