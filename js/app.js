@@ -20,12 +20,12 @@ const chooseFighter = () => {
 
     image.addEventListener("mouseover", function () {
       if (!clicked) {
-        showImage.classList.toggle("hidden");
+        showImage.classList.remove("hidden");
       }
     });
     image.addEventListener("mouseout", function () {
       if (!clicked) {
-        showImage.classList.toggle("hidden");
+        showImage.classList.add("hidden");
       }
     });
     image.addEventListener("click", function () {
@@ -61,13 +61,12 @@ const chooseFighter2 = () => {
 
     image.addEventListener("mouseover", function () {
       if (!clicked) {
-        showImage.classList.add("hidden");
         showImage.classList.remove("hidden");
       }
     });
     image.addEventListener("mouseout", function () {
       if (!clicked) {
-        showImage.classList.toggle("hidden");
+        showImage.classList.add("hidden");
       }
     });
     image.addEventListener("click", function () {
