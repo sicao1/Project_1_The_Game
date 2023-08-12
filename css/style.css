@@ -125,6 +125,18 @@ li img {
   background-color: #999;
 }
 
+.winner {
+  font-family: "Tilt Prism", cursive;
+  font-size: 52px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  max-height: 300px;
+  margin-top: 80px;
+  padding: 20px;
+  background-color: #e6e65c;
+}
+
 /* below is the event listener section */
 .prompt-ready {
   cursor: pointer;
