@@ -8,6 +8,25 @@ body {
   background-color: #333;
 }
 
+h1 {
+  font-family: "Ruwudu", serif;
+  font-size: 50px;
+  color: #ffff66;
+  text-align: center;
+  margin: 40px 0 30px 0;
+}
+
+span {
+  text-transform: uppercase;
+  font-family: "Tilt Prism", cursive;
+  font-size: 100px;
+}
+
+h2 {
+  font-family: "Ruwudu", serif;
+  color: #ffff66;
+}
+
 ul {
   list-style: none;
 }
@@ -38,13 +57,15 @@ li img {
 
 .choosen-player {
   display: flex;
-  justify-content: space-evenly;
-  font-family: "Ruwudu", serif;
+  justify-content: space-between;
+  font-family: "Tilt Prism", cursive;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 42px;
   color: #ffff66;
   padding-left: 500px;
   padding-right: 500px;
+  margin-bottom: 35px;
+  text-decoration: underline;
 }
 
 .player-2 {
@@ -67,10 +88,6 @@ li img {
   max-width: 350px;
 }
 
-.hidden {
-  display: none;
-}
-
 .fight-section {
   display: flex;
   justify-content: space-between;
@@ -78,6 +95,16 @@ li img {
   padding-right: 70px;
 }
 
+.stats {
+  font-family: "Ruwudu", serif;
+  font-size: 24px;
+  color: #ffff66;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+/* below is the event listener section */
 .prompt-ready {
   cursor: pointer;
 }
@@ -90,31 +117,6 @@ li img {
   cursor: pointer;
 }
 
-h1 {
-  font-family: "Ruwudu", serif;
-  font-size: 50px;
-  color: #ffff66;
-  text-align: center;
-  margin: 40px 0 30px 0;
-}
-
-span {
-  text-transform: uppercase;
-  font-family: "Tilt Prism", cursive;
-  font-size: 100px;
-}
-
-h2 {
-  font-family: "Ruwudu", serif;
-  color: #ffff66;
-}
-
-.stats {
-  font-family: "Ruwudu", serif;
-  font-size: 24px;
-  color: #ffff66;
-  display: flex;
-  justify-content: space-between;
-  padding-left: 70px;
-  padding-right: 70px;
+.hidden {
+  display: none;
 }
