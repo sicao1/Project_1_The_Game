@@ -262,9 +262,3 @@ const checkHealth = () => {
 
 startPlayer1();
 startPlayer2();
-
-// if (!showAlert) {
-//   alert(
-//     `Player 1 had more keypress ${player1.keyPressCount} vs. ${player2.keyPressCount}\nPlayer 1 decreases Player 2 health by ${player1.keyPressCount}`
-//   );
-// }
