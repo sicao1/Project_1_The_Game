@@ -19,19 +19,29 @@ li img {
 .character-selection {
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 .characters {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  column-gap: 5px;
+  column-gap: 8px;
+  row-gap: 8px;
   cursor: pointer;
+  border: ridge 10px #ffff66;
+  padding: 8px;
 }
 
-.selector-1 {
+.characters li {
+  border: double 2px #737373;
+}
+
+.selector-1,
+.selector-2 {
   height: 375px;
   width: 375px;
-  border: dashed 10px #ffff66;
+  border: groove 10px #ffff66;
+  margin-bottom: 20px;
 }
 
 .selector-1 img {
@@ -85,6 +95,11 @@ h2 {
 }
 
 .stats {
+  font-family: "Ruwudu", serif;
+  font-size: 24px;
+  color: #ffff66;
   display: flex;
   justify-content: space-between;
+  padding-left: 70px;
+  padding-right: 70px;
 }

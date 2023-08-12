@@ -92,6 +92,7 @@ const timedKeyPresses = (player, duration, elementToShowNext) => {
 
   // record keypress function
   const countKeyPress = (event) => {
+    event.preventDefault();
     if (event.key === " ") {
       keyPressCount++;
       console.log(`Player ${player} key presses: ${keyPressCount}`);
