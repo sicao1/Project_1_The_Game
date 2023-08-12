@@ -119,6 +119,9 @@ const timedKeyPresses = (player, duration, elementToShowNext) => {
     if (event.key === " ") {
       keyPressCount++;
       console.log(`Player ${player} key presses: ${keyPressCount}`);
+
+      let displayKeypress = document.querySelector(`.player--${player}-damage`);
+      displayKeypress.innerHTML = `Damage: ${keyPressCount}`;
     }
   };
 
