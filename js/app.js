@@ -1,26 +1,33 @@
 // Choose your fighter, cycle through choices and select one
 const imagePairTags = [
-  ["#McDonalds", "#select-McDonalds"],
-  ["#InNOut", "#select-InNOut"],
-  ["#PandaExpress", "#select-PandaExpress"],
-  ["#Popeyes", "#select-popeyes"],
-  ["#Wendys", "#select-wendys"],
-  ["#BurgerKing", "#select-burgerKing"],
-  ["#KFC", "#select-kfc"],
-  ["#Mark", "#select-wahlburgers"],
-  ["#Chipotle", "#select-chipotle"],
-  ["#TacoBell", "#select-tacoBell"],
+  ["#McDonalds", "#select-McDonalds", "McDonalds"],
+  ["#InNOut", "#select-InNOut", "In N Out"],
+  ["#PandaExpress", "#select-PandaExpress", "Panda Express"],
+  ["#Popeyes", "#select-popeyes", "Popeyes"],
+  ["#Wendys", "#select-wendys", "Wendys"],
+  ["#BurgerKing", "#select-burgerKing", "Burger King"],
+  ["#KFC", "#select-kfc", "KFC"],
+  ["#Mark", "#select-wahlburgers", "Wahlburger"],
+  ["#Chipotle", "#select-chipotle", "Chipotle"],
+  ["#TacoBell", "#select-tacoBell", "Taco Bell"],
 ];
 const chooseFighter = () => {
   let clicked = false;
 
-  for (const [imageSelection, targetSelection] of imagePairTags) {
+  for (const [
+    imageSelection,
+    targetSelection,
+    choosenPlayer,
+  ] of imagePairTags) {
     const image = document.querySelector(imageSelection);
     const showImage = document.querySelector(targetSelection);
 
     image.addEventListener("mouseover", function () {
       if (!clicked) {
         showImage.classList.remove("hidden");
+        document.querySelector(
+          ".choosen-player p"
+        ).innerHTML = `${choosenPlayer}`;
       }
     });
     image.addEventListener("mouseout", function () {
@@ -40,28 +47,35 @@ const chooseFighter = () => {
 };
 
 const imagePairTags2 = [
-  ["#McDonalds", "#select-McDonalds2"],
-  ["#InNOut", "#select-InNOut2"],
-  ["#PandaExpress", "#select-PandaExpress2"],
-  ["#Popeyes", "#select-popeyes2"],
-  ["#Wendys", "#select-wendys2"],
-  ["#BurgerKing", "#select-burgerKing2"],
-  ["#KFC", "#select-kfc2"],
-  ["#Mark", "#select-wahlburgers2"],
-  ["#Chipotle", "#select-chipotle2"],
-  ["#TacoBell", "#select-tacoBell2"],
+  ["#McDonalds", "#select-McDonalds2", "McDonalds"],
+  ["#InNOut", "#select-InNOut2", "In N Out"],
+  ["#PandaExpress", "#select-PandaExpress2", "Panda Express"],
+  ["#Popeyes", "#select-popeyes2", "Popeyes"],
+  ["#Wendys", "#select-wendys2", "Wendys"],
+  ["#BurgerKing", "#select-burgerKing2", "Burger King"],
+  ["#KFC", "#select-kfc2", "KFC"],
+  ["#Mark", "#select-wahlburgers2", "Wahlburger"],
+  ["#Chipotle", "#select-chipotle2", "Chipotle"],
+  ["#TacoBell", "#select-tacoBell2", "Taco Bell"],
 ];
 
 const chooseFighter2 = () => {
   let clicked = false;
 
-  for (const [imageSelection, targetSelection] of imagePairTags2) {
+  for (const [
+    imageSelection,
+    targetSelection,
+    choosenPlayer,
+  ] of imagePairTags2) {
     const image = document.querySelector(imageSelection);
     const showImage = document.querySelector(targetSelection);
 
     image.addEventListener("mouseover", function () {
       if (!clicked) {
         showImage.classList.remove("hidden");
+        document.querySelector(
+          ".choosen-player p:last-child"
+        ).innerHTML = `${choosenPlayer}`;
       }
     });
     image.addEventListener("mouseout", function () {

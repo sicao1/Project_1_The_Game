@@ -36,6 +36,21 @@ li img {
   border: double 2px #737373;
 }
 
+.choosen-player {
+  display: flex;
+  justify-content: space-evenly;
+  font-family: "Ruwudu", serif;
+  font-weight: bold;
+  font-size: 36px;
+  color: #ffff66;
+  padding-left: 500px;
+  padding-right: 500px;
+}
+
+.player-2 {
+  text-align: right;
+}
+
 .selector-1,
 .selector-2 {
   height: 375px;
