@@ -164,6 +164,8 @@ promptPlayer1.addEventListener("click", () => {
   });
 });
 
+const alert = document.querySelector("click");
+
 // Timed keypresses for Player 2
 // After player 2 turn decrease health accordingly
 const startPlayer2 = () => {
@@ -176,9 +178,16 @@ const startPlayer2 = () => {
   });
 };
 
+// let showAlert = false;
+
 const results = () => {
   if (player1.keyPressCount > player2.keyPressCount) {
     player2.health -= player1.keyPressCount;
+    // if (!showAlert) {
+    //   alert(
+    //     `Player 1 had more keypress ${player1.keyPressCount} vs. ${player2.keyPressCount}\nPlayer 1 decreases Player 2 health by ${player1.keyPressCount}`
+    //   );
+    // }
     document.querySelector(
       ".player--2"
     ).innerHTML = `Health: ${player2.health}`;
@@ -201,12 +210,12 @@ const results = () => {
 };
 
 const checkHealth = () => {
-  if (player1.health <= 0) {
-    console.log(`Player 2 is the winner`);
+  if (player1.health <= 0 && player2.health <= 0) {
+    console.log(`It's a draw, eat healthier`);
   } else if (player2.health <= 0) {
     console.log(`Player 1 is the winner`);
-  } else if (player1.health <= 0 && player2.health <= 0) {
-    console.log(`It's a draw, eat healthier`);
+  } else if (player1.health <= 0) {
+    console.log(`Player 2 is the winner`);
   }
 };
 

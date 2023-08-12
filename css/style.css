@@ -65,6 +65,7 @@ li img {
   padding-left: 500px;
   padding-right: 500px;
   margin-bottom: 35px;
+  flex: 0 1 auto;
 }
 
 .choosen-player p {
