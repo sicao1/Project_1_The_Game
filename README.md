@@ -9,3 +9,14 @@ The Javascript contains arrays, for of loops to cycle through character selectio
 Overall the game does still contain some glitches:
 When player 1 hovers over a character the name does not disappear
 Player 1 directions prompt appears after game logic ends and you still have to click the button to see the final results
+
+Things to work on:
+
+1. put timer on the screen
+2. change health to health bar
+3. add more css annimations for character selection
+4. add more css for damage incrementer
+5. fix bugs
+   a. prompt player1 directions
+6. player again feature that keep track of victories
+7. more instructions
