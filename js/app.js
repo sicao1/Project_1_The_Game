@@ -227,12 +227,31 @@ const results = () => {
 
 const checkHealth = () => {
   if (player1.health <= 0 && player2.health <= 0) {
+    const promptWinner = document.querySelector(".winner");
+
+    promptWinner.classList.toggle("hidden");
+    promptWinner.innerHTML = `It's a draw, eat healthier`;
+
     console.log(`It's a draw, eat healthier`);
     endGame = true;
   } else if (player2.health <= 0) {
+    const promptWinner = document.querySelector(".winner");
+    const nameWinner = document.querySelector(".choosen-player p").innerHTML;
+
+    promptWinner.classList.toggle("hidden");
+    promptWinner.innerHTML = `${nameWinner} Wins`;
+
     console.log(`Player 1 is the winner`);
     endGame = true;
   } else if (player1.health <= 0) {
+    const promptWinner = document.querySelector(".winner");
+    const nameWinner = document.querySelector(
+      ".choosen-player p:last-child"
+    ).innerHTML;
+
+    promptWinner.classList.toggle("hidden");
+    promptWinner.innerHTML = `${nameWinner} Wins`;
+
     console.log(`Player 2 is the winner`);
     endGame = true;
   }
