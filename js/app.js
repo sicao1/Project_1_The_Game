@@ -104,9 +104,18 @@ const timedKeyPresses = (player, duration, elementToShowNext) => {
   let startTimestamp = Date.now();
   let interval;
 
+  if (endGame) {
+    return;
+  }
+
   // record keypress function
   const countKeyPress = (event) => {
     event.preventDefault();
+
+    if (endGame) {
+      return;
+    }
+
     if (event.key === " ") {
       keyPressCount++;
       console.log(`Player ${player} key presses: ${keyPressCount}`);
@@ -117,6 +126,10 @@ const timedKeyPresses = (player, duration, elementToShowNext) => {
 
   // stop timer function
   interval = setInterval(() => {
+    if (endGame) {
+      return;
+    }
+
     const currentTime = Date.now();
     const totalTime = currentTime - startTimestamp;
 
@@ -153,22 +166,28 @@ const player2 = {
 const promptPlayer1 = document.querySelector(".prompt-ready");
 const promptPlayer2 = document.querySelector(".prompt-directions-player2");
 
-promptPlayer1.addEventListener("click", () => {
-  promptPlayer1.classList.toggle("hidden");
-  const promptPlayer1Fight = document.querySelector(".prompt-directions");
-  promptPlayer1Fight.classList.toggle("hidden");
-  promptPlayer1Fight.addEventListener("click", () => {
-    promptPlayer1Fight.classList.add("hidden");
-    timedKeyPresses(1, 5000, promptPlayer2);
-    results();
-  });
-});
+const startPlayer1 = () => {
+  promptPlayer1.addEventListener("click", () => {
+    promptPlayer1.classList.toggle("hidden");
 
-const alert = document.querySelector("click");
+    const promptPlayer1Fight = document.querySelector(".prompt-directions");
+    promptPlayer1Fight.classList.toggle("hidden");
+    promptPlayer1Fight.addEventListener("click", () => {
+      promptPlayer1Fight.classList.add("hidden");
+
+      timedKeyPresses(1, 5000, promptPlayer2);
+      results();
+    });
+  });
+};
 
 // Timed keypresses for Player 2
 // After player 2 turn decrease health accordingly
 const startPlayer2 = () => {
+  if (endGame) {
+    return;
+  }
+
   const beginCountPlayer2 = document.querySelector(
     ".prompt-directions-player2"
   );
@@ -178,45 +197,52 @@ const startPlayer2 = () => {
   });
 };
 
-// let showAlert = false;
+let endGame = false;
 
 const results = () => {
-  if (player1.keyPressCount > player2.keyPressCount) {
-    player2.health -= player1.keyPressCount;
-    // if (!showAlert) {
-    //   alert(
-    //     `Player 1 had more keypress ${player1.keyPressCount} vs. ${player2.keyPressCount}\nPlayer 1 decreases Player 2 health by ${player1.keyPressCount}`
-    //   );
-    // }
-    document.querySelector(
-      ".player--2"
-    ).innerHTML = `Health: ${player2.health}`;
-  } else if (player1.keyPressCount === player2.keyPressCount) {
-    player1.health -= player2.keyPressCount;
-    player2.health -= player1.keyPressCount;
-    document.querySelector(
-      ".player--1"
-    ).innerHTML = `Health: ${player1.health}`;
-    document.querySelector(
-      ".player--2"
-    ).innerHTML = `Health: ${player2.health}`;
-  } else {
-    player1.health -= player2.keyPressCount;
-    document.querySelector(
-      ".player--1"
-    ).innerHTML = `Health: ${player1.health}`;
+  if (!endGame) {
+    if (player1.keyPressCount > player2.keyPressCount) {
+      player2.health -= player1.keyPressCount;
+      document.querySelector(
+        ".player--2"
+      ).innerHTML = `Health: ${player2.health}`;
+    } else if (player1.keyPressCount === player2.keyPressCount) {
+      player1.health -= player2.keyPressCount;
+      player2.health -= player1.keyPressCount;
+      document.querySelector(
+        ".player--1"
+      ).innerHTML = `Health: ${player1.health}`;
+      document.querySelector(
+        ".player--2"
+      ).innerHTML = `Health: ${player2.health}`;
+    } else {
+      player1.health -= player2.keyPressCount;
+      document.querySelector(
+        ".player--1"
+      ).innerHTML = `Health: ${player1.health}`;
+    }
+    checkHealth();
   }
-  checkHealth();
 };
 
 const checkHealth = () => {
   if (player1.health <= 0 && player2.health <= 0) {
     console.log(`It's a draw, eat healthier`);
+    endGame = true;
   } else if (player2.health <= 0) {
     console.log(`Player 1 is the winner`);
+    endGame = true;
   } else if (player1.health <= 0) {
     console.log(`Player 2 is the winner`);
+    endGame = true;
   }
 };
 
+startPlayer1();
 startPlayer2();
+
+// if (!showAlert) {
+//   alert(
+//     `Player 1 had more keypress ${player1.keyPressCount} vs. ${player2.keyPressCount}\nPlayer 1 decreases Player 2 health by ${player1.keyPressCount}`
+//   );
+// }
