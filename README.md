@@ -20,3 +20,5 @@ Things to work on:
    a. prompt player1 directions
 6. player again feature that keep track of victories
 7. more instructions
+   a. player 1 choose
+   b. player 2 choose

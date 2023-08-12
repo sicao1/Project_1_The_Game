@@ -156,12 +156,12 @@ const timedKeyPresses = (player, duration, elementToShowNext) => {
 };
 
 const player1 = {
-  health: 10,
+  health: 100,
   keyPressCount: 0,
 };
 
 const player2 = {
-  health: 10,
+  health: 100,
   keyPressCount: 0,
 };
 
