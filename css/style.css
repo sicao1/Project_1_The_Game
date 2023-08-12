@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: gray;
+  background-color: #333;
 }
 
 ul {
@@ -29,7 +29,9 @@ li img {
 }
 
 .selector-1 {
-  height: 350px;
+  height: 375px;
+  width: 375px;
+  border: dashed 10px #ffff66;
 }
 
 .selector-1 img {
@@ -47,6 +49,8 @@ li img {
 .fight-section {
   display: flex;
   justify-content: space-between;
+  padding-left: 70px;
+  padding-right: 70px;
 }
 
 .prompt-ready {
@@ -59,6 +63,25 @@ li img {
 
 .prompt-directions-player2 {
   cursor: pointer;
+}
+
+h1 {
+  font-family: "Ruwudu", serif;
+  font-size: 50px;
+  color: #ffff66;
+  text-align: center;
+  margin: 40px 0 30px 0;
+}
+
+span {
+  text-transform: uppercase;
+  font-family: "Tilt Prism", cursive;
+  font-size: 100px;
+}
+
+h2 {
+  font-family: "Ruwudu", serif;
+  color: #ffff66;
 }
 
 .stats {
