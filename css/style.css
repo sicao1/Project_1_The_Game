@@ -112,6 +112,14 @@ li img {
   padding-right: 70px;
 }
 
+.player--1-damage {
+  margin-left: -15px;
+}
+
+.player--2-damage {
+  margin-left: 715px;
+}
+
 .prompt-directions,
 .prompt-ready,
 .prompt-directions-player2 {
