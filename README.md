@@ -1,5 +1,7 @@
 # Mortal Kombat - Fast Food edition
 
+https://classy-sundae-1956f7.netlify.app/
+
 This is a two player fighter game basis on the original Mortal Kombat game. Players will get to choose their favorite fast food chain and pit them against each other. The players will then take turns pressing the space bar for a duration of 5 seconds each turn. Whichever player has the highest number of key presses for that round does damage to their oppenent.
 
 The HTML contains google fonts and images created by midjourney AI.
